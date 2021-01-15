@@ -22,10 +22,12 @@
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <p>Foto Profil</p>
-                                            <img src="foto/<?= $foto ?>" alt="" srcset="" class="card-img">
+                                                <div id="fotos">
+                                                    <img id="tampil_foto" src="foto/<?= $foto ?>" alt="Cek Paketan Gs" class="card-img">
+                                                </div>
                                         </div>
                                             <div class="col-md-9">
-                                                <form action="process.php" method="POST">
+                                                <form action="process.php" method="POST" enctype="multipart/form-data">
                                                     <input type="hidden" name="id_user" value="<?= $id ?>">
                                                     <div class="form-group">
                                                         <label>Nama </label>
@@ -36,10 +38,18 @@
                                                         <input type="text" name="username" value="<?= $row_profil["username"] ?>" readonly class="form-control" required>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label></label>
+                                                        <input id="imgInp" type="file" name="file">
+                                                    </div>
+                                                    <div class="form-group">
                                                         <button type="submit" class="btn btn-info btn-sm" name="update_profil">Perbarui Profil</button>
                                                         <!-- <a href="#" onclick="ganti()" class="btn btn-danger btn-sm">Ganti Password</a> -->
                                                     </div>
-                                                </form>
+                                                    <!-- <form runat="server">
+                                                        <input type='file' id="imgInp" />
+                                                        <img id="blah" src="#" alt="your image" />
+                                                        </form>
+                                                </form> -->
                                             </div>
                                         </div>
                                         </div>
@@ -55,4 +65,24 @@
        </div>
    </div>
 </div>
+
+
+
+<script>
+    function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    
+    reader.onload = function(e) {
+      $('#tampil_foto').attr('src', e.target.result);
+    }
+    
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+  }
+}
+
+$("#imgInp").change(function() {
+  readURL(this);
+});
+</script>
 

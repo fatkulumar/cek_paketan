@@ -57,13 +57,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <div class="dropdown-divider"></div>
-          <a href="logout.php" class="dropdown-item">
-            <i class="mr-1"></i> <strong>Logout</strong> 
-            <span class="float-right text-muted text-sm">Logout</span>
-          </a>
           <a href="index.php?profil" class="dropdown-item">
             <i class="mr-1"></i> <strong>Profil</strong> 
             <span class="float-right text-muted text-sm">Profil</span>
+          </a>
+          <a href="logout.php" class="dropdown-item">
+            <i class="mr-1"></i> <strong>Logout</strong> 
+            <span class="float-right text-muted text-sm">Logout</span>
           </a>
       </li>
       <li class="nav-item">

@@ -33,7 +33,7 @@
                     <input class="form-control" type="text" name="no_pelanggan" value="<?= $row["no_pelanggan"] ?>" required>
                 </div>
                 <div>
-                    <button class="btn btn-primary" type="submit" name="update">Update Paketan</button>
+                    <button class="btn btn-primary  btn-sm" type="submit" name="update">Update Paketan</button>
                 </div>
             </form>
           </div>

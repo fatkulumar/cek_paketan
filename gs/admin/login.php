@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in</title>
+  <title>Login | Cek Paketan</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -16,6 +16,17 @@
 </head>
 <body class="hold-transition login-page">
 
+<?php
+  session_start();
+
+  if(isset($_SESSION["pesan_aktivasi"])){
+    echo "<script>
+        alert('Cek email untuk aktivasi akun');
+    </script>";
+  }
+  unset($_SESSION["pesan_aktivasi"]);
+?>
+
 <div class="login-box">
   <div class="login-logo">
     <a href="adminlte/index2.html"><b>Admin Gs</b> Cek Paketan</a>
@@ -25,7 +36,6 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg" style="color: red;">
       <?php 
-        session_start();
         if(isset($_SESSION["pesan"])){
           echo $_SESSION["pesan"];
           unset($_SESSION["pesan"]);
@@ -53,10 +63,10 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
+              <!-- <input type="checkbox" id="remember">
               <label for="remember">
                 Remember Me
-              </label>
+              </label> -->
             </div>
           </div>
           <!-- /.col -->
@@ -73,7 +83,7 @@
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
+        <a href="forgot_password.php">I forgot my password</a>
       </p>
       <p class="mb-0">
         <a href="register.php" class="text-center">Register a new membership</a>

@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  include "conn.php";
+?>
+
 <!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
@@ -8,6 +13,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cek Paketan</title>
+
+  <style>
+    input[type="text"]
+{
+    background: transparent;
+    border: none;
+}
+  </style>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -38,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index.php" class="brand-link">
-      <img src="gs/admin/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="gs/admin/foto/gasek.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Cek Paketan</span>
     </a>
 
@@ -47,10 +60,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="gs/admin/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="gs/admin/foto/gasmul.png  " class="img-circle elevation-2" alt="Cek Paketan">
         </div>
         <div class="info">
-          <a href="index.php" class="d-block">Cek Paketan</a>
+          <a href="index.php" class="d-block">
+            <?php 
+              if(isset($_SESSION["name"])) {
+                echo $_SESSION["name"];
+              }else{
+                echo "Cek Paketan";
+              }
+            ?>
+          </a>
         </div>
       </div>
 
@@ -82,7 +103,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="row">
         <div class="col-md-12 mt-2">
             <div class="card">
-                <div class="card-header bg-danger"><strong><h1>Cek Paketan Gs</strong></h1></div>
+                <div class="card-header bg-danger"><strong><h1>Cek Paketan Gs</strong></h1>
+                  <input type="text" id="barcode" autofocus>
+                </div>
                 <div class="card-body">
 
                       <div class="table table-responsive">   
@@ -99,7 +122,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <th>Status</th>
                                 </tr>
                             </thead>
-                          <tbody>
+                          <tbody id="add">
 
                               <?php 
                                   include "conn.php";
@@ -137,7 +160,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
+  <?php include "api.php";?>
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
@@ -165,22 +188,26 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="gs/admin/adminlte/plugins/datatables/jquery.dataTables.js"></script>
 
   <script>
-        $(function () {
-    $("#table_resi").DataTable({
-      "responsive": true, "lengthChange": true, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#table_resi').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-    </script>
-    
+  //       $(function () {
+  //   $("#table_resi").DataTable({
+  //     "responsive": true, "lengthChange": true, "autoWidth": false,
+  //     "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+  //   }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  //   $('#table_resi').DataTable({
+  //     "paging": true,
+  //     "lengthChange": false,
+  //     "searching": true,
+  //     "ordering": true,
+  //     "info": true,
+  //     "autoWidth": false,
+  //     "responsive": true,
+  //   });
+  // });
+
+      $(function() {
+        $('#table_resi').DataTable()
+      })
+  </script>
+  
 </body>
 </html>
