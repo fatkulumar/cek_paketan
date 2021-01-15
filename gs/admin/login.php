@@ -24,8 +24,20 @@
         alert('Cek email untuk aktivasi akun');
     </script>";
   }
-  unset($_SESSION["pesan_aktivasi"]);
 ?>
+<?php
+  if(isset($_SESSION["pesan_akun_aktif"])):
+    $pesan_akun_aktif = $_SESSION["pesan_akun_aktif"];
+?>
+    <script>
+        alert(" <?= $pesan_akun_aktif ?> ");
+    </script>
+<?php endif ?>
+<?php
+  unset($_SESSION["pesan_aktivasi"]);
+  unset($_SESSION["pesan_akun_aktif"]);
+?>
+
 
 <div class="login-box">
   <div class="login-logo">

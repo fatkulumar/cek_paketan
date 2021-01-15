@@ -22,7 +22,15 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg" style="color: red;">
+      <?php 
+        session_start();
+        if(isset($_SESSION["pesan_username_ganda"])){
+          echo $_SESSION["pesan_username_ganda"];
+          unset($_SESSION["pesan_username_ganda"]);
+        } 
+      ?>
+      </p>
 
       <form action="process.php" method="post">
         <div class="input-group mb-3">

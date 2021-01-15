@@ -10,7 +10,7 @@
    <div class="row">
        <div class="col-md-12 mt-2">
            <div class="card">
-               <div class="card-header bg-danger"><strong><h1>Profil</strong></div>
+               <div class="card-header bg-danger"><strong><h1>Edit Profil</strong></div>
                     <div class="card-body">
 
 
@@ -18,7 +18,16 @@
                                 <div class="col-md-12">
                                     <div class="card ">
                                         <div class="card-body">
+                                        <p class="login-box-msg" style="color: red;">
                                         
+                                            <?php 
+                                                if(isset($_SESSION["pesan_profil_file"])){
+                                                echo $_SESSION["pesan_profil_file"];
+                                                unset($_SESSION["pesan_profil_file"]);
+                                                } 
+                                            ?>
+                                        </p>
+
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <p>Foto Profil</p>

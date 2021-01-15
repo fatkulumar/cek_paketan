@@ -1,3 +1,10 @@
+<?php
+    include "../../conn.php";
+    if(isset($_GET["url"])){
+        $url = mysqli_real_escape_string($conn, $_GET["url"]);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,54 +22,86 @@
   <link rel="stylesheet" href="adminlte/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
+
+<?php
+  session_start();
+
+  if(isset($_SESSION["pesan_aktivasi"])){
+    echo "<script>
+        alert('Cek email untuk aktivasi akun');
+    </script>";
+  }
+?>
+<?php
+  if(isset($_SESSION["pesan_akun_aktif"])):
+    $pesan_akun_aktif = $_SESSION["pesan_akun_aktif"];
+?>
+    <script>
+        alert(" <?= $pesan_akun_aktif ?> ");
+    </script>
+<?php endif ?>
+<?php
+  unset($_SESSION["pesan_aktivasi"]);
+  unset($_SESSION["pesan_akun_aktif"]);
+?>
+
+
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Gs</b> Forgot Password</a>
+    <a href="adminlte/index2.html"><b>Lupa</b> Password</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Lupa Password Cek Paketan</p>
       <p class="login-box-msg" style="color: red;">
-        <?php
-          session_start();
-          if(isset($_SESSION["pesan"])){
-            echo $_SESSION["pesan"];
-          }
+      <?php 
+        if(isset($_SESSION["pesan"])){
+          echo $_SESSION["pesan"];
           unset($_SESSION["pesan"]);
-        ?>
+        } 
+      ?>
       </p>
 
-      <form action="process.php" method="POST">
+      <form action="process.php" method="post">
+    
         <div class="input-group mb-3">
-          <input type="email" name="username" class="form-control" placeholder="Email">
+          <input type="password" class="form-control" name="password1" placeholder="Password 1">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
-       <div class="row">
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" name="password2" placeholder="Password 2">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
+              <!-- <input type="checkbox" id="remember">
+              <label for="remember">
+                Remember Me
+              </label> -->
             </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" name="forgot" name class="btn btn-primary btn-block">Submit</button>
+            <button type="submit" name="forgot_process" class="btn btn-primary btn-block">Ganti</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
-      <!-- <div class="social-auth-links text-center mb-3">
+      <div class="social-auth-links text-center mb-3">
         <p></p>
-      </div> -->
+      </div>
       <!-- /.social-auth-links -->
 
-      <!-- <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p> -->
       <p class="mb-0">
         <a href="login.php" class="text-center">Already have an account ?</a>
       </p>

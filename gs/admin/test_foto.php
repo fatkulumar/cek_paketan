@@ -18,7 +18,7 @@ $kode = $start+$myid;
 $short_url = base_convert($kode, 10, 36); //konversi ke alphanumeric, base 10 ke base 36
 $short_url_back = base_convert($short_url, 36, 10); //konversi balik  base 36 ke base 10
 
-$host = $_SERVER['HTTP_HOST']."/latihan/resi/aktivasi.php?aktivasi=";
+$host = $_SERVER['HTTP_NAME']."/latihan/resi/aktivasi.php?aktivasi=";
 $url_path = $host;
 $url_short = str_shuffle(password_hash($short_url, PASSWORD_DEFAULT));
 $url_display = $url_path.$url_short;
@@ -49,7 +49,7 @@ $url_lengkap = $url_path."gs/admin/process.php?verifikasi=".$theid;
 ?>
 
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -61,11 +61,13 @@ $url_lengkap = $url_path."gs/admin/process.php?verifikasi=".$theid;
     <div style="margin: 30px;">
         <center><a style="background:#2C97DF; color:white; border-top:0; border-left:0; border-right:0; border-bottom:5px solid #2A80B9; padding:10px 20px; text-decoration:none; font-family:sans-serif; font-size:11pt;" href="">centerUmar</a></center>
     </div>
-    <center><div>
+    <center>
+        <div>
         <img style="width: 10%;" src="foto/gasek.jpg" alt="Pondok Pesantren Sabilurrosyad">
         <img style="width: 20%;" src="foto/gasmul.png" alt="Gasek Multimedia">
         <p style="line-height: 0px; margin-left: 10px;">Gasek &copy; 2021</p>
     
-    </div></center>
+    </div>
+</center>
 </body>
-</html>
+</html> -->

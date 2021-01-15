@@ -74,6 +74,16 @@
     }elseif(isset($_POST["register"])){
         $username = mysqli_real_escape_string($conn, $_POST["username"]);
         $password = mysqli_real_escape_string($conn, $_POST["password"]);
+        $qrys_cek_email = mysqli_query($conn, "SELECT username FROM tb_users WHERE username = '$username'");
+        while($row_cek_email = mysqli_fetch_array($qrys_cek_email)){
+            $email_db = $row_cek_email["username"];
+            $name_db = $row_cek_email["name"];
+            if($email_db == $username){
+                $_SESSION["pesan_username_ganda"] = "Email sudah terdaftar";
+                header("Location: register.php");
+                die();
+            }
+        }
         $name = mysqli_real_escape_string($conn, $_POST["name"]);
         include "send_mail.php";
         $pssd_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -102,29 +112,19 @@
 
         if($ukuran == 0){
             echo $nama = $foto;
-        }
-        // die();
-        if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
-            // echo "umar"; die();
-            if($ukuran < 104407000000){			
-                // echo "fat umar"; die();
-                move_uploaded_file($file_tmp, 'foto/'.$nama);
-                // $query = mysqli_query($conn, "INSERT INTO upload VALUES(NULL, '$nama')");
-                if($query){
-                    echo 'FILE BERHASIL DI UPLOAD';
+        }else{
+            if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
+                if($ukuran < 104407000000){			
+                    move_uploaded_file($file_tmp, 'foto/'.$nama);
                 }else{
-                    echo 'GAGAL MENGUPLOAD GAMBAR';
+                    echo 'UKURAN FILE TERLALU BESAR';
                 }
             }else{
-                echo 'UKURAN FILE TERLALU BESAR';
-            }
-        }elseif(in_array($ekstensi, $ekstensi_diperbolehkan) === false){
-            echo "Ekstensi Tidak Terdaftar"; 
+                $_SESSION["pesan_profil_file"] = "File Tidak Diperbolehkan"; 
+                header("Location: index.php?edit_profil");
+                die();
+            }   
         }
-        // else{
-        //     echo 'EKSTENSI FILE YANG DI UPLOAD TIDAK DI PERBOLEHKAN';
-        // }
-
         
         $name = mysqli_real_escape_string($conn, $_POST["name"]);
         $username_profil = mysqli_real_escape_string($conn, $_POST["username"]);
@@ -136,14 +136,29 @@
         }
     }elseif(isset($_POST["forgot"])){
         $email_forgot = mysqli_real_escape_string($conn, $_POST["username"]);
-        $qrys_email = mysqli_query($conn, "SELECT username FROM `tb_users` WHERE `username` = '$email_forgot'");
-        $row_email = mysqli_fetch_array($qrys_email);
-        $email_db = $row_email["username"];
+        $qrys_email = mysqli_query($conn, "SELECT username, name, url_short FROM `tb_users`");
+        $row_email = mysqli_fetch_array($qrys_email); 
+        $email_db = $row_email["username"];  
+        $name_db = $row_email["name"];  
+        echo $url_pendek = $_SERVER["SERVER_NAME"] ."/latihan/resi/aktivasi.php?forgot=". $row_email["url_short"]; 
         if($email_forgot == $email_db){
-            include "send_mail.php";
+            // echo $url_pendek; die();
+            include "send_forgot.php";
+            $pesan = $_SESSION["pesan"] = "Cek email untuk ganti password";
+            header("Location: login.php");
         }else{
             $pesan = $_SESSION["pesan"] = "Email Tidak Ada";
             header('Location: forgot_password.php');
+        }
+    }elseif(isset($_POST["forgot_process"])){
+        $password = mysqli_real_escape_string($conn, $_POST["password1"]);
+        $pass_forgot_hash = password_hash($password, PASSWORD_DEFAULT);
+        $update_password = mysqli_query($conn, "UPDATE `tb_users` SET `password` = '$pass_forgot_hash'");
+        if($update_password){
+            $pesan = $_SESSION["pesan"] = "Password sudah di ganti";
+            header("Location: login.php");
+        }else{
+            echo "Gagal ganti Password";
         }
     }elseif(isset($_GET["aktivasi"])){
         $url = mysqli_real_escape_string($conn, $_GET["aktivasi"]);
@@ -154,3 +169,11 @@
             echo "ada"; die();
         }
     }
+    // elseif(isset($_GET["forgot"])) {
+    //     $username_forgot = mysqli_real_escape_string($conn, $_POST["username"]);
+    //     $qrys_email = mysqli_query($conn, "SELECT username FROM `tb_users` WHERE `username` = '$username_forgot'");
+    //     while($row_forgot = mysqli_fetch_array($qrys_email)){
+    //         echo $forgot_db = $row_forgot["username"];
+    //         die();
+    //     }
+    // }

@@ -3,7 +3,7 @@
     // use PHPMailer\PHPMailer\Exception;
     
     require_once "vendor/autoload.php";
-    include "test_foto.php";
+    // include "test_foto.php";
     
 
 // require_once "library/PHPMailer.php";
@@ -31,17 +31,17 @@
     $mail->Port = 587;
 
     $mail->From = "rayafantasi@gmail.com"; //email pengirim
-    $mail->FromName = "Cek Paketan"; //nama pengirim
+    $mail->FromName = "Ganti Password Cek Paketan"; //nama pengirim
 
     // $mail->addAddress($_POST['email'], $_POST['nama']); //email penerima
-    $mail->addAddress($username, $name); //email penerima
+    $mail->addAddress($email_db, $name_db); //email penerima
 
     $mail->isHTML(true);
 
     $mail->AddEmbeddedImage("foto/gasek.jpg", "gs", "gasek.jpg");
     $mail->AddEmbeddedImage("foto/gasmul.png", "gm", "gasmul.jpg");
 
-    $umar = "<!DOCTYPE html>
+    $html = "<!DOCTYPE html>
     <html lang='en'>
     <head>
         <meta charset='UTF-8'>
@@ -88,20 +88,22 @@
         </style>
     </head>
     <body>
-        <center>Email ini dikirim otomatis oleh sistem Cek Paketan Pondok Sabilurrosad. Mohon klik tombol di bawah ini untuk aktivasi akun</center>
+        <center>Email ini dikirim otomatis oleh sistem Cek Paketan Pondok Sabilurrosad. Mohon klik tombol di bawah ini untuk ganti password akun</center>
         <div style='margin: 30px'>
-        <center><a style='background:#2C97DF; color:white; border-top:0; border-left:0; border-right:0; border-bottom:5px solid #2A80B9; padding:10px 20px; text-decoration:none; font-family:sans-serif; font-size:11pt;' <a href='".$url_pendek."'>Aktivasi</a></center>
+        <center><a style='background:#2C97DF; color:white; border-top:0; border-left:0; border-right:0; border-bottom:5px solid #2A80B9; padding:10px 20px; text-decoration:none; font-family:sans-serif; font-size:11pt;' href='".$url_pendek."'>Aktivasi</a></center>
         </div>
         <center><div>
         <img style='width: 10%;' src='cid:gs' alt='Pondok Pesantren Sabilurrosyad'>
         <img style='width: 20%;' src='cid:gm' alt='Gasek Multimedia'>
         <p style='line-height: 0px; margin-left: 10px;'>Gasek &copy; 2021</p>
         </div></center>
+
+    </div>
     </body>
     </html>";
-    $html = $umar;
+    $html = $html;
 
-    $mail->Subject = 'Akun Cek Paketan'; //subject
+    $mail->Subject = 'Ganti Password Cek Paketan'; //subject
     $mail->Body    = $html; //isi email
     $mail->AltBody = " Gasek Multimedia"; //body email
     // $mail->Subject = $_POST['subjek']; //subject

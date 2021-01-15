@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 15 Jan 2021 pada 11.06
+-- Waktu pembuatan: 15 Jan 2021 pada 15.06
 -- Versi server: 10.4.17-MariaDB
 -- Versi PHP: 8.0.0
 
@@ -89,8 +89,7 @@ CREATE TABLE `tb_users` (
 --
 
 INSERT INTO `tb_users` (`id_user`, `username`, `password`, `name`, `foto`, `aktivasi`, `url_short`) VALUES
-(15, 'fatkulumar@gmail.com', '$2y$10$hbWvfxZT.fBuLUXzYwQEhuMf3k8iFdhTYJ8XX662o7U65jhd05wS6', 'Fatkul Umar', '', 0, 'pEjble1pfx$bp1CKtsZ2bfk2Vq5/J$TvsSUNt$uyFCI1Ey3oi0nyu77fZrBb'),
-(16, 'fatkulumar@gmail.com', '$2y$10$Q2n/2hpS1zDFErCznThayehpP4lgEyCEWFqah18UeBoWTGo2sgfxy', 'Fatkul Umar', '', 0, 'v0eN$2DwMye8TDqz$l5TZIR1.SaTVhs$bp2fD3gc.IgOyvl82fLxnq1rtJHp');
+(1, 'fatkulumar@gmail.com', '$2y$10$pl.evNR5vwU3BcWTGFl4L.shfGJiKDG9hqsvHmEoNcna0svv.IIu2', 'Fatkul Umar', '', 1, 'wA21Gp.FgdObli$Jejw$JZn0Q19yuy96ycIN1FsQIQBaXZvS$99bCb.fm.1G');
 
 --
 -- Indexes for dumped tables
@@ -122,7 +121,7 @@ ALTER TABLE `tb_resi`
 -- AUTO_INCREMENT untuk tabel `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
