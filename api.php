@@ -55,7 +55,7 @@
             echo "Cek Paketan";
         }
     ?>">
-    <input type="hidden" readonly id="tgl_penerimaan" name="tgl_penerimaan" value="<?= date("d-m-Y") ?>">
+    <input type="hidden" readonly id="tgl_penerimaan" name="tgl_penerimaan" value="<?php date_default_timezone_set('Asia/Jakarta'); echo date("d-m-Y H:i:s") ?>">
     <input type="hidden" readonly id="no_pelanggan" name="no_pelanggan" value="<?= $data4 ?>">
 </form>
 
@@ -95,7 +95,7 @@ $(document).ready(function(){
                // alert(data);
                 var i = $("#nomor").val();
                 var nomor = parseInt(i) + 1
-                var html = "<tr><td>"+ nomor +"</td><td>" + data.pengirim + "</td><td>" + data.penerima + "</td><td>" + data.tgl_penerimaan + "</td><td>" + data.no_pelanggan + "</td><td><span class='btn btn-danger btn-sm'>Belum Diambil</span></td></tr>"
+                var html = "<tr><td>"+ nomor++ +"</td><td>" + data.pengirim + "</td><td>" + data.penerima + "</td><td>" + data.tgl_penerimaan + "</td><td>" + data.no_pelanggan + "</td><td><span class='btn btn-danger btn-sm'>Belum Diambil</span></td></tr>"
                 // console.log(data.pengirim)
                 $("#add").append(html)
                 $('#barcode').val("")
